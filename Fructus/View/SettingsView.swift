@@ -12,6 +12,7 @@ struct SettingsView: View {
     //MARK: Properties
     @Environment(\.dismiss) var dismiss
     @AppStorage("isOnboarding") var isOnboarding: Bool = false
+    @State private var onBoarding: Bool = false
     
     //MARK: Body
     var body: some View {
@@ -36,7 +37,7 @@ struct SettingsView: View {
                     } label: {
                         SettingsLabelView(labelText: Text("Fructus", comment: "Group Title: Fructus"), labelImage: Image(systemName: "info.circle"))
                     }//: GroupBox
-
+                    
                     //MARK: Section 2
                     GroupBox {
                         Divider()
@@ -49,8 +50,8 @@ struct SettingsView: View {
                             .font(.footnote)
                             .multilineTextAlignment(.leading)
                         
-                        Toggle(isOn: $isOnboarding) {
-                            if isOnboarding {
+                        Toggle(isOn: $onBoarding) {
+                            if onBoarding {
                                 Text("Restarted", comment: "Button: Restarted")
                                     .fontWeight(.bold)
                                     .textCase(.uppercase)
@@ -71,7 +72,7 @@ struct SettingsView: View {
                     } label: {
                         SettingsLabelView(labelText: Text("Customization", comment: "Group Title: Customization"), labelImage: Image(systemName: "paintbrush"))
                     }//: GroupBox
-
+                    
                     
                     //MARK: Section 3
                     GroupBox {
@@ -90,12 +91,16 @@ struct SettingsView: View {
                     }//: GroupBox
                     
                 }//: VStack
+                .onDisappear {
+                    isOnboarding = onBoarding
+                }
                 .navigationTitle(Text("Settings", comment: "Navigation Title: Settings"))
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             withAnimation {
+                                isOnboarding = onBoarding
                                 dismiss()
                             }
                         } label: {

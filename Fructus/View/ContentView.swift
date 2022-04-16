@@ -11,13 +11,13 @@ struct ContentView: View {
     //MARK: Properties
     @State private var isShowingSettings: Bool = false
     
-    var fruits: [Fruit] = fruitsData
+    var fruits: [Fruit] = fruitsData.shuffled()
     
     //MARK: Body
     var body: some View {
         NavigationView {
             List {
-                ForEach(fruits.shuffled()) {fruit in
+                ForEach(fruits) {fruit in
                     NavigationLink {
                         FruitDetailView(fruit: fruit)
                     } label: {
@@ -41,6 +41,10 @@ struct ContentView: View {
             .sheet(isPresented: $isShowingSettings) {
                 SettingsView()
             }//: sheet
+            
+            if let fruit = fruits.first {
+                FruitDetailView(fruit: fruit)
+            }
         }//: NavigationView
     }
 }
