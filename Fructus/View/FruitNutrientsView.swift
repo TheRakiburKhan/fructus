@@ -11,6 +11,7 @@ struct FruitNutrientsView: View {
     //MARK: Properties
     var fruit: Fruit
     let nutrients: [String] = ["Energy", "Sugar", "Fat", "Protein", "Vitamins", "Minerals"]
+    
     //MARK: Body
     var body: some View {
         GroupBox {
@@ -22,7 +23,8 @@ struct FruitNutrientsView: View {
                     HStack {
                         Group {
                             Image(systemName: "info.circle")
-                        Text(nutrients[item])
+                            
+                            Text(nutrients[item])
                         }//: Group
                         .foregroundColor(fruit.gradientColors.last)
                         .font(.body.bold())
@@ -34,15 +36,17 @@ struct FruitNutrientsView: View {
                     }//: HStack
                 }//: Loop
             } label: {
-                Text("Nutritional value per \(Measurement(value: 100, unit: UnitMass.grams), format: .measurement(width: .abbreviated))")
+                Text("Nutritional value per \(Measurement(value: 100, unit: UnitMass.grams), format: .measurement(width: .abbreviated))", comment: "Text: Nutritional value per 100 units of a fruit")
             }//: DisclosureGroup
-
+            
         }//: GroupBox
     }
 }
 
+#if DEBUG
 struct FruitNutrientsView_Previews: PreviewProvider {
     static var previews: some View {
         FruitNutrientsView(fruit: fruitsData.first!)
     }
 }
+#endif
