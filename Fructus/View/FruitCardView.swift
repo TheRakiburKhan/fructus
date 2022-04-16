@@ -46,8 +46,8 @@ struct FruitCardView: View {
         .onAppear {
             withAnimation(.easeOut(duration: 0.5)) {
                 isAnimating = true
-            }
-        }
+            }//: withAnimation
+        }//: onAppear
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         .background(
             LinearGradient(colors: fruit.gradientColors, startPoint: .top, endPoint: .bottom)
@@ -57,8 +57,10 @@ struct FruitCardView: View {
     }
 }
 
+#if DEBUG
 struct FruitCardView_Previews: PreviewProvider {
     static var previews: some View {
         FruitCardView(fruit: fruitsData.last!)
     }
 }
+#endif
