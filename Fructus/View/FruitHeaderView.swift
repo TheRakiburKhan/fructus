@@ -33,8 +33,10 @@ struct FruitHeaderView: View {
     }
 }
 
+#if DEBUG
 struct FruitHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         FruitHeaderView(fruit: fruitsData.first!)
     }
 }
+#endif
