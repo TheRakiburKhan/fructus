@@ -36,8 +36,9 @@ struct FruitDetailView: View {
                         FruitNutrientsView(fruit: fruit)
                         
                         //Subheadline
-                        Text("Learn more about \(fruit.title)".uppercased())
+                        Text("Learn more about \(fruit.title)", comment: "Text: Lear more about fruit")
                             .fontWeight(.bold)
+                            .textCase(.uppercase)
                             .foregroundColor(fruit.gradientColors.last)
                         
                         //Description
@@ -62,8 +63,10 @@ struct FruitDetailView: View {
     }
 }
 
+#if DEBUG
 struct FruitDetailView_Previews: PreviewProvider {
     static var previews: some View {
         FruitDetailView(fruit: fruitsData.first!)
     }
 }
+#endif
