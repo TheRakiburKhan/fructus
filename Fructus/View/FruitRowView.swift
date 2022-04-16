@@ -14,6 +14,7 @@ struct FruitRowView: View {
     //MARK: Body
     var body: some View {
         HStack {
+            // Fruit Image
             Image(fruit.image)
                 .renderingMode(.original)
                 .resizable()
@@ -25,6 +26,7 @@ struct FruitRowView: View {
                 )
                 .cornerRadius(8)
             
+            // Fruit Description
             VStack(alignment: .leading, spacing: 5) {
                 Text(fruit.title)
                     .font(.title2)
@@ -38,8 +40,10 @@ struct FruitRowView: View {
     }
 }
 
+#if DEBUG
 struct FruitRowView_Previews: PreviewProvider {
     static var previews: some View {
         FruitRowView(fruit: fruitsData.first!)
     }
 }
+#endif
