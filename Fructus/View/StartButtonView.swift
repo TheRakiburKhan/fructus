@@ -19,22 +19,23 @@ struct StartButtonView: View {
             }
         } label: {
             HStack(spacing: 8) {
-                Text("Start")
+                Text("Start", comment: "Button: Start")
                 
                 Image(systemName: "arrow.right.circle")
                     .imageScale(.large)
-            }
+            }//: HStack
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
             .background(
                 Capsule()
                     .strokeBorder(Color.white, lineWidth: 1.25)
             )
-        } // Button
+        }//: Button
         .tint(.white)
     }
 }
 
+#if DEBUG
 struct StartButtonView_Previews: PreviewProvider {
     static var previews: some View {
         StartButtonView()
@@ -42,3 +43,4 @@ struct StartButtonView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
+#endif
